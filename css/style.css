@@ -743,3 +743,253 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .about__badge { position: static; display: inline-flex; gap: 12px; align-items: center; margin-bottom: 16px; width: fit-content; border-radius: var(--radius); padding: 12px 20px; }
   .about__badge-num { font-size: 1.4rem; }
 }
+
+/* ===========================
+   REVIEWS
+   =========================== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.review-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.review-card__stars {
+  display: flex;
+  gap: 3px;
+}
+.review-card__stars svg {
+  width: 18px;
+  height: 18px;
+  color: #f59e0b;
+}
+.review-card__text {
+  font-size: .93rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+  flex: 1;
+}
+.review-card__text::before { content: '"'; }
+.review-card__text::after  { content: '"'; }
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.review-card__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+.review-card__author strong {
+  display: block;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.review-card__author span {
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+.reviews-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.reviews-summary__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.reviews-summary__num {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+.reviews-summary__stars {
+  display: flex;
+  gap: 4px;
+}
+.reviews-summary__stars svg {
+  width: 22px;
+  height: 22px;
+  color: #f59e0b;
+}
+.reviews-summary__label {
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.reviews-summary__note {
+  font-size: .8rem;
+  color: var(--text-light);
+}
+
+/* ===========================
+   WHATSAPP BUTTON
+   =========================== */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 20px 12px 14px;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  font-size: .88rem;
+  font-weight: 600;
+  transition: transform var(--transition), box-shadow var(--transition), padding var(--transition), border-radius var(--transition);
+  overflow: hidden;
+  max-width: 200px;
+}
+.whatsapp-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+.whatsapp-btn span {
+  white-space: nowrap;
+  transition: max-width var(--transition), opacity var(--transition);
+  max-width: 100px;
+  opacity: 1;
+}
+.whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 26px rgba(37,211,102,.55);
+}
+@media (max-width: 480px) {
+  .whatsapp-btn { padding: 12px; border-radius: 50%; bottom: 80px; right: 20px; }
+  .whatsapp-btn span { max-width: 0; opacity: 0; overflow: hidden; }
+}
+
+/* ===========================
+   SCROLL TO TOP
+   =========================== */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition), background var(--transition);
+}
+.scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover { background: var(--primary-light); }
+.scroll-top svg { width: 18px; height: 18px; }
+
+/* ===========================
+   COOKIE BANNER
+   =========================== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--primary-dark);
+  color: rgba(255,255,255,.9);
+  padding: 16px 0;
+  transform: translateY(100%);
+  transition: transform .4s ease;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.2);
+}
+.cookie-banner.show { transform: translateY(0); }
+.cookie-banner__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cookie-banner__text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+}
+.cookie-banner__text svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.cookie-banner__text p { font-size: .88rem; }
+.cookie-banner__text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.cookie-banner__actions { display: flex; gap: 10px; flex-shrink: 0; }
+.btn-cookie {
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  border: none;
+  font: inherit;
+}
+.btn-cookie--decline {
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8);
+  border: 1px solid rgba(255,255,255,.2);
+}
+.btn-cookie--decline:hover { background: rgba(255,255,255,.18); color: #fff; }
+.btn-cookie--accept {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-cookie--accept:hover { background: var(--accent-dark); }
+@media (max-width: 600px) {
+  .cookie-banner__inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .cookie-banner__actions { width: 100%; justify-content: flex-end; }
+}

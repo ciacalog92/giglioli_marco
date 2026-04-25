@@ -43,11 +43,13 @@ const observer = new IntersectionObserver(
 const animTargets = [
   '.service-card',
   '.why-card',
+  '.review-card',
   '.about__content',
   '.about__visual',
   '.contact-info',
   '.contact-form',
   '.section__header',
+  '.reviews-summary',
 ];
 document.querySelectorAll(animTargets.join(',')).forEach((el, i) => {
   el.classList.add('fade-up');
@@ -109,3 +111,61 @@ if (form) {
     field.addEventListener('input', () => field.classList.remove('error'));
   });
 }
+
+// Footer year
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// Scroll-to-top button
+const scrollTopBtn = document.getElementById('scrollTop');
+if (scrollTopBtn) {
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Cookie banner
+const cookieBanner  = document.getElementById('cookieBanner');
+const cookieAccept  = document.getElementById('cookieAccept');
+const cookieDecline = document.getElementById('cookieDecline');
+
+if (cookieBanner && !localStorage.getItem('gm_cookie_consent')) {
+  setTimeout(() => cookieBanner.classList.add('show'), 800);
+
+  const dismissBanner = val => {
+    localStorage.setItem('gm_cookie_consent', val);
+    cookieBanner.classList.remove('show');
+  };
+  cookieAccept.addEventListener('click',  () => dismissBanner('all'));
+  cookieDecline.addEventListener('click', () => dismissBanner('necessary'));
+}
+
+// Animated counters for stat numbers
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el  = entry.target;
+    const raw = el.textContent.replace(/\D/g, '');
+    const end = parseInt(raw, 10);
+    if (isNaN(end)) return;
+    const suffix = el.textContent.replace(/[\d]/g, '');
+    const dur    = 1200;
+    const start  = performance.now();
+
+    const tick = now => {
+      const progress = Math.min((now - start) / dur, 1);
+      const ease     = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * end) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat__num, .about__badge-num').forEach(el => {
+  counterObserver.observe(el);
+});

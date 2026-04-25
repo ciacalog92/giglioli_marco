@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="G.M. Impianti di Giglioli Marco - Vendita, installazione e riparazione di impianti termici, idraulici e di condizionamento. Antincendio, piscine ed energie rinnovabili." />
+  <title>G.M. Impianti – Giglioli Marco</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="logo">
+        <span class="logo__mark">GM</span>
+        <span class="logo__text">
+          <strong>G.M. Impianti</strong>
+          <small>di Giglioli Marco</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#servizi" class="nav__link">Servizi</a></li>
+          <li><a href="#chi-siamo" class="nav__link">Chi Siamo</a></li>
+          <li><a href="#perche-noi" class="nav__link">Perché Noi</a></li>
+          <li><a href="#contatti" class="nav__link nav__link--cta">Contattaci</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__bg"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Professionalità &amp; Esperienza</p>
+      <h1 class="hero__title">
+        Impianti di qualità.<br />
+        <span class="highlight">Affidabilità garantita.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Vendita, installazione e riparazione di impianti termici, idraulici e di
+        condizionamento. Antincendio, piscine ed energie rinnovabili.
+      </p>
+      <div class="hero__actions">
+        <a href="#contatti" class="btn btn--primary">Richiedi un Preventivo</a>
+        <a href="#servizi" class="btn btn--ghost">Scopri i Servizi</a>
+      </div>
+    </div>
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="section" id="servizi">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Cosa facciamo</p>
+        <h2 class="section__title">I Nostri Servizi</h2>
+        <p class="section__desc">
+          Offriamo soluzioni complete per ogni esigenza: dalla progettazione alla
+          manutenzione, con interventi rapidi e materiali certificati.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card" data-color="red">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10"/>
+              <path d="M12 6c0 0-2 2.5-2 5s2 5 2 5"/>
+              <path d="M15 8c0 0 1 1.5 1 3s-1 3-1 3"/>
+              <path d="M9 8c0 0-1 1.5-1 3s1 3 1 3"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Impianti Termici</h3>
+          <p class="service-card__desc">
+            Installazione e manutenzione di caldaie, termosifoni, pannelli radianti
+            a pavimento e sistemi di riscaldamento centralizzato.
+          </p>
+          <ul class="service-card__list">
+            <li>Caldaie a gas e condensazione</li>
+            <li>Riscaldamento a pavimento</li>
+            <li>Manutenzione e riparazione</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-color="blue">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M6.3 6.3l11.4 11.4M17.7 6.3L6.3 17.7"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Impianti Idraulici</h3>
+          <p class="service-card__desc">
+            Realizzazione e riparazione di impianti idraulici civili e industriali,
+            dalla distribuzione idrica agli scarichi.
+          </p>
+          <ul class="service-card__list">
+            <li>Tubazioni e distribuzione acqua</li>
+            <li>Bagni e cucine</li>
+            <li>Pronto intervento perdite</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-color="cyan">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="10" rx="2"/>
+              <path d="M10 7V5a2 2 0 0 1 4 0v2"/>
+              <path d="M7 12h.01M12 12h.01M17 12h.01"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Condizionamento</h3>
+          <p class="service-card__desc">
+            Fornitura e installazione di climatizzatori e pompe di calore per
+            ambienti residenziali e commerciali.
+          </p>
+          <ul class="service-card__list">
+            <li>Split e multisplit</li>
+            <li>Pompe di calore</li>
+            <li>Assistenza e gas refrigerante</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-color="orange">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Antincendio</h3>
+          <p class="service-card__desc">
+            Progettazione e installazione di impianti antincendio conformi alle
+            normative vigenti, con collaudi e verifiche periodiche.
+          </p>
+          <ul class="service-card__list">
+            <li>Sprinkler e idranti</li>
+            <li>Rilevatori di fumo e gas</li>
+            <li>Manutenzione certificata</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-color="teal">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12h20M12 2v20"/>
+              <path d="M5 7c2 0 4 1 7 5 3-4 5-5 7-5"/>
+              <path d="M5 17c2 0 4-1 7-5 3 4 5 5 7 5"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Piscine</h3>
+          <p class="service-card__desc">
+            Impianti idraulici e di filtrazione per piscine private e pubbliche,
+            con sistemi di riscaldamento dell'acqua.
+          </p>
+          <ul class="service-card__list">
+            <li>Filtrazione e trattamento acqua</li>
+            <li>Riscaldamento piscina</li>
+            <li>Pompe e impianti di scarico</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-color="green">
+          <div class="service-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Energie Rinnovabili</h3>
+          <p class="service-card__desc">
+            Installazione di pannelli solari termici e fotovoltaici, pompe di
+            calore geotermiche e sistemi ibridi per ridurre i consumi.
+          </p>
+          <ul class="service-card__list">
+            <li>Solare termico e fotovoltaico</li>
+            <li>Pompe di calore geotermiche</li>
+            <li>Incentivi e detrazioni fiscali</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI SIAMO -->
+  <section class="section section--alt" id="chi-siamo">
+    <div class="container">
+      <div class="about">
+        <div class="about__visual">
+          <div class="about__badge">
+            <span class="about__badge-num">20+</span>
+            <span class="about__badge-label">Anni di<br />Esperienza</span>
+          </div>
+          <div class="about__img-wrap">
+            <div class="about__img-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              <p>G.M. Impianti</p>
+            </div>
+          </div>
+          <div class="about__stats">
+            <div class="stat">
+              <span class="stat__num">500+</span>
+              <span class="stat__label">Clienti Soddisfatti</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">1000+</span>
+              <span class="stat__label">Impianti Installati</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__content">
+          <p class="section__eyebrow">Chi Siamo</p>
+          <h2 class="section__title section__title--left">
+            Competenza artigianale,<br />standard professionali
+          </h2>
+          <p class="about__text">
+            <strong>G.M. Impianti di Giglioli Marco</strong> opera nel settore degli
+            impianti civili e industriali da oltre vent'anni, con una struttura
+            snella che garantisce interventi rapidi, prezzi trasparenti e un
+            rapporto diretto con il cliente.
+          </p>
+          <p class="about__text">
+            Operiamo su tutto il territorio con un team di tecnici qualificati,
+            costantemente aggiornati sulle normative di sicurezza e sulle ultime
+            tecnologie disponibili.
+          </p>
+          <div class="about__tags">
+            <span class="tag">Certificati</span>
+            <span class="tag">Abilitati</span>
+            <span class="tag">Assicurati</span>
+            <span class="tag">Puntualità garantita</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERCHÉ NOI -->
+  <section class="section" id="perche-noi">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">I nostri punti di forza</p>
+        <h2 class="section__title">Perché Sceglierci</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Affidabilità</h3>
+          <p>Rispettiamo tempi e costi concordati. La nostra parola è una garanzia.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Pronto Intervento</h3>
+          <p>Disponibili anche in emergenza per guasti e riparazioni urgenti, 7 giorni su 7.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Garanzia sui Lavori</h3>
+          <p>Tutti gli interventi sono garantiti. Usiamo solo componenti certificati di prima qualità.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Rapporto Diretto</h3>
+          <p>Parli sempre con Marco. Nessuna burocrazia, preventivi chiari e senza sorprese.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Tecnologie Aggiornate</h3>
+          <p>Utilizziamo le più moderne tecnologie per massimizzare efficienza e risparmio energetico.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h3>Prezzi Competitivi</h3>
+          <p>Preventivi gratuiti e trasparenti. Il miglior rapporto qualità-prezzo sul mercato.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container cta-banner__inner">
+      <div class="cta-banner__text">
+        <h2>Hai bisogno di un intervento?</h2>
+        <p>Contattaci per un preventivo gratuito e senza impegno. Rispondiamo entro 24 ore.</p>
+      </div>
+      <a href="#contatti" class="btn btn--white">Richiedi Preventivo Gratuito</a>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="section" id="contatti">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Siamo qui per te</p>
+        <h2 class="section__title">Contattaci</h2>
+        <p class="section__desc">
+          Compila il modulo oppure chiamaci direttamente. Risponderemo nel più breve tempo possibile.
+        </p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Telefono</strong>
+              <a href="tel:+39XXXXXXXXXX">+39 000 000 0000</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:info@gmimpianti.it">info@gmimpianti.it</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Zona Operativa</strong>
+              <span>Provincia e dintorni</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Orari</strong>
+              <span>Lun–Ven 8:00–18:00<br />Sab 8:00–13:00</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome e Cognome <span>*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Telefono <span>*</span></label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+39 333 1234567" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="mario@esempio.it" />
+          </div>
+          <div class="form-group">
+            <label for="servizio">Servizio di Interesse</label>
+            <select id="servizio" name="servizio">
+              <option value="">— Seleziona un servizio —</option>
+              <option>Impianti Termici</option>
+              <option>Impianti Idraulici</option>
+              <option>Condizionamento</option>
+              <option>Antincendio</option>
+              <option>Piscine</option>
+              <option>Energie Rinnovabili</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="messaggio">Messaggio <span>*</span></label>
+            <textarea id="messaggio" name="messaggio" rows="5" placeholder="Descrivi brevemente il tuo impianto o l'intervento richiesto..." required></textarea>
+          </div>
+          <div class="form-group form-group--check">
+            <label class="checkbox-label">
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <span>Ho letto e accetto la <a href="#">Privacy Policy</a></span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Invia Richiesta</button>
+          <p class="form-note">* Campi obbligatori. Risponderemo entro 24 ore lavorative.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#home" class="logo logo--white">
+          <span class="logo__mark">GM</span>
+          <span class="logo__text">
+            <strong>G.M. Impianti</strong>
+            <small>di Giglioli Marco</small>
+          </span>
+        </a>
+        <p class="footer__tagline">Affidabilità garantita.</p>
+      </div>
+
+      <div class="footer__links">
+        <h4>Servizi</h4>
+        <ul>
+          <li><a href="#servizi">Impianti Termici</a></li>
+          <li><a href="#servizi">Impianti Idraulici</a></li>
+          <li><a href="#servizi">Condizionamento</a></li>
+          <li><a href="#servizi">Antincendio</a></li>
+          <li><a href="#servizi">Piscine</a></li>
+          <li><a href="#servizi">Energie Rinnovabili</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__links">
+        <h4>Azienda</h4>
+        <ul>
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+          <li><a href="#perche-noi">Perché Noi</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__contact">
+        <h4>Contatti Rapidi</h4>
+        <p><a href="tel:+39XXXXXXXXXX">+39 000 000 0000</a></p>
+        <p><a href="mailto:info@gmimpianti.it">info@gmimpianti.it</a></p>
+        <p class="footer__hours">Lun–Ven 8:00–18:00<br />Sab 8:00–13:00</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2024 G.M. Impianti di Giglioli Marco – P.IVA 000000000 – Tutti i diritti riservati</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

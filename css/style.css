@@ -885,7 +885,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .whatsapp-btn {
   position: fixed;
-  bottom: 96px;
+  bottom: 88px;
   right: 24px;
   z-index: 90;
   display: flex;
@@ -923,8 +923,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .scroll-top {
   position: fixed;
-  bottom: 96px;
-  right: 96px;
+  bottom: 24px;
+  right: 24px;
   z-index: 90;
   width: 44px;
   height: 44px;
@@ -1025,11 +1025,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .chat-widget {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 12px;
 }
 
@@ -1096,7 +1096,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   pointer-events: none;
   /* max-height collapses AFTER the fade-out finishes */
   transition: opacity .25s ease, transform .25s ease, max-height 0s .25s;
-  transform-origin: bottom right;
+  transform-origin: bottom left;
 }
 .chat-window.open {
   max-height: 520px;
@@ -1321,7 +1321,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .chat-widget { bottom: 16px; right: 16px; left: 16px; align-items: flex-end; }
+  .chat-widget { bottom: 16px; left: 16px; right: auto; align-items: flex-start; }
+  .chat-window { width: calc(100vw - 32px); }
   .chat-window.open { max-height: 460px; }
   .whatsapp-btn { bottom: 88px; right: 20px; }
 }

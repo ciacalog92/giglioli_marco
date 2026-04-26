@@ -885,7 +885,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .whatsapp-btn {
   position: fixed;
-  bottom: 88px;
+  bottom: 96px;
   right: 24px;
   z-index: 90;
   display: flex;
@@ -923,8 +923,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .scroll-top {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 96px;
+  right: 96px;
   z-index: 90;
   width: 44px;
   height: 44px;
@@ -1024,7 +1024,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .chat-widget {
   position: fixed;
-  bottom: 90px;
+  bottom: 24px;
   right: 24px;
   z-index: 9999;
   display: flex;
@@ -1084,23 +1084,27 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* Window */
 .chat-window {
   width: 340px;
-  max-height: 520px;
   background: var(--surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 16px 60px rgba(0,0,0,.18);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-height: 0;
   opacity: 0;
   transform: translateY(16px) scale(.97);
   pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
+  /* max-height collapses AFTER the fade-out finishes */
+  transition: opacity .25s ease, transform .25s ease, max-height 0s .25s;
   transform-origin: bottom right;
 }
 .chat-window.open {
+  max-height: 520px;
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+  /* max-height expands IMMEDIATELY when opening */
+  transition: opacity .25s ease, transform .25s ease, max-height 0s 0s;
 }
 
 /* Header */
@@ -1317,6 +1321,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .chat-widget { bottom: 80px; right: 16px; left: 16px; align-items: flex-end; }
-  .chat-window { width: 100%; max-height: 460px; }
+  .chat-widget { bottom: 16px; right: 16px; left: 16px; align-items: flex-end; }
+  .chat-window.open { max-height: 460px; }
+  .whatsapp-btn { bottom: 88px; right: 20px; }
 }

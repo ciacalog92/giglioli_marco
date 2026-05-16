@@ -132,6 +132,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: center;
   gap: 10px;
 }
+.logo__img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  transition: transform var(--transition);
+}
+.logo:hover .logo__img { transform: scale(1.08); }
 .logo__mark {
   display: grid;
   place-items: center;
@@ -703,9 +713,22 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .footer__bottom {
   padding-block: 20px;
-  text-align: center;
+}
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 .footer__bottom p { font-size: .82rem; color: rgba(255,255,255,.4); }
+.footer__admin-link {
+  font-size: .76rem;
+  color: rgba(255,255,255,.18);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer__admin-link:hover { color: rgba(255,255,255,.55); }
 
 /* ===========================
    SCROLL ANIMATIONS

@@ -37,10 +37,13 @@ function _applyContent() {
           img.src = val;
         }
       } else if (key === 'contact-phone') {
-        // sync footer too
-        document.querySelectorAll('[data-key="footer-phone"]').forEach(a => { a.textContent = val; a.href = 'tel:' + val.replace(/[\s\-\(\)]/g,''); });
+        // sync footer + WhatsApp
+        const cleanNum = val.replace(/[\s\-\+\(\)]/g,'');
+        document.querySelectorAll('[data-key="footer-phone"]').forEach(a => { a.textContent = val; a.href = 'tel:' + cleanNum; });
+        const waBtn = document.querySelector('.whatsapp-btn');
+        if (waBtn) waBtn.href = `https://wa.me/${cleanNum}?text=Salve%2C%20vorrei%20un%20preventivo%20per%20un%20impianto.`;
         el.textContent = val;
-        el.href = 'tel:' + val.replace(/[\s\-\(\)]/g,'');
+        el.href = 'tel:' + cleanNum;
       } else if (key === 'footer-phone') {
         // already handled via contact-phone sync above — fall through to innerHTML
         el.textContent = val;
@@ -59,6 +62,10 @@ function _applyContent() {
   // Galleria
   const gallery = data['__gallery__'];
   if (gallery && gallery.length) _renderGallery(gallery);
+
+  // Recensioni
+  const reviews = data['__reviews__'];
+  if (reviews && reviews.length) _renderReviews(reviews);
 }
 
 // ─── GALLERIA PROGETTI ───────────────────────────────────────────────────────────
@@ -166,11 +173,12 @@ function _initAdmin() {
         Admin Panel
       </span>
       <div class="admin-bar__actions">
-        <button id="abEdit"    class="ab-btn">✏️ Modifica</button>
-        <button id="abGallery" class="ab-btn">🖼️ Galleria</button>
-        <button id="abSave"    class="ab-btn ab-btn--save" disabled>💾 Salva</button>
-        <button id="abReset"   class="ab-btn ab-btn--danger">🗑️ Reset</button>
-        <button id="abLogout"  class="ab-btn ab-btn--logout">Esci</button>
+        <button id="abEdit"     class="ab-btn">✏️ Modifica</button>
+        <button id="abGallery"  class="ab-btn">🖼️ Galleria</button>
+        <button id="abReviews"  class="ab-btn">⭐ Recensioni</button>
+        <button id="abSave"     class="ab-btn ab-btn--save" disabled>💾 Salva</button>
+        <button id="abReset"    class="ab-btn ab-btn--danger">🗑️ Reset</button>
+        <button id="abLogout"   class="ab-btn ab-btn--logout">Esci</button>
       </div>
     </div>
   `;
@@ -217,6 +225,11 @@ function _initAdmin() {
   // ── Galleria ─────────────────────────────────────────────────────────────────
   document.getElementById('abGallery').addEventListener('click', () => {
     _openGalleryModal(_pending, _markDirty);
+  });
+
+  // ── Recensioni ───────────────────────────────────────────────────────────────
+  document.getElementById('abReviews').addEventListener('click', () => {
+    _openReviewsModal(_pending, _markDirty);
   });
 }
 
@@ -415,4 +428,134 @@ function _openGalleryModal(pending, markDirty) {
 function _closeModal(modal) {
   modal.classList.remove('show');
   setTimeout(() => modal.remove(), 300);
+}
+
+// ─── STELLE SVG ──────────────────────────────────────────────────────────────────
+const _STAR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+const _starsSVG = n => Array(Math.max(1, Math.min(5, n || 5))).fill(_STAR_SVG).join('');
+
+// ─── RENDER RECENSIONI ────────────────────────────────────────────────────────────
+function _renderReviews(reviews) {
+  const grid = document.getElementById('reviewsGrid');
+  if (!grid || !reviews.length) return;
+  grid.innerHTML = reviews.map(r => `
+    <div class="review-card">
+      <div class="review-card__stars">${_starsSVG(r.stars)}</div>
+      <blockquote class="review-card__text">${_esc(r.text)}</blockquote>
+      <div class="review-card__author">
+        <div class="review-card__avatar">${_esc(r.avatar)}</div>
+        <div>
+          <strong>${_esc(r.author)}</strong>
+          <span>${_esc(r.role)}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MODALE RECENSIONI ────────────────────────────────────────────────────────────
+function _openReviewsModal(pending, markDirty) {
+  const stored = _getContent();
+  let localRevs = JSON.parse(JSON.stringify(
+    pending['__reviews__'] ?? stored['__reviews__'] ?? _defaultReviews()
+  ));
+
+  const modal = document.createElement('div');
+  modal.className = 'admin-modal';
+  modal.innerHTML = `
+    <div class="admin-modal__bd"></div>
+    <div class="admin-modal__dialog" style="max-width:760px">
+      <div class="admin-modal__head">
+        <h3>Gestione Recensioni</h3>
+        <button class="admin-modal__cls" type="button">✕</button>
+      </div>
+      <div class="admin-modal__body">
+        <div id="gmRevList" class="gm-rev-list"></div>
+        <button id="gmAddRev" class="ab-btn ab-btn--add" type="button">+ Aggiungi recensione</button>
+      </div>
+      <div class="admin-modal__foot">
+        <button id="gmSaveRevs" class="ab-btn ab-btn--save" type="button">Applica</button>
+        <button class="admin-modal__cls ab-btn" type="button">Chiudi</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  requestAnimationFrame(() => modal.classList.add('show'));
+
+  function render() {
+    const list = document.getElementById('gmRevList');
+    if (!localRevs.length) {
+      list.innerHTML = '<p class="gm-gall-empty">Nessuna recensione. Aggiungine una!</p>';
+      return;
+    }
+    list.innerHTML = localRevs.map((r, i) => `
+      <div class="gm-rev-item">
+        <div class="gm-rev-stars">
+          ${[1,2,3,4,5].map(n => `
+            <button type="button" class="gm-star ${n <= (r.stars||5) ? 'gm-star--on' : ''}"
+                    data-i="${i}" data-n="${n}">★</button>
+          `).join('')}
+          <span class="gm-rev-label">stelle</span>
+        </div>
+        <textarea class="gm-rev-ta" data-field="text" data-i="${i}"
+                  placeholder="Testo recensione…" rows="3">${_esc(r.text||'')}</textarea>
+        <div class="gm-rev-row">
+          <input class="gm-rev-inp" data-field="author" data-i="${i}"
+                 value="${_esc(r.author||'')}" placeholder="Nome e Cognome"/>
+          <input class="gm-rev-inp" data-field="role" data-i="${i}"
+                 value="${_esc(r.role||'')}" placeholder="Ruolo (es. Cliente – Caldaia)"/>
+          <input class="gm-rev-inp gm-rev-inp--sm" data-field="avatar" data-i="${i}"
+                 value="${_esc(r.avatar||'')}" placeholder="Iniziali (es. LM)" maxlength="3"/>
+          <button class="ab-btn ab-btn--danger ab-btn--sm" data-del="${i}" type="button">✕</button>
+        </div>
+      </div>
+    `).join('');
+
+    // Stars toggle
+    list.querySelectorAll('.gm-star').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = +btn.dataset.i, n = +btn.dataset.n;
+        localRevs[i].stars = n;
+        render();
+      });
+    });
+    // Field inputs
+    list.querySelectorAll('[data-field]').forEach(el => {
+      el.addEventListener('input', () => {
+        localRevs[+el.dataset.i][el.dataset.field] = el.value;
+      });
+    });
+    // Delete
+    list.querySelectorAll('[data-del]').forEach(btn => {
+      btn.addEventListener('click', () => { localRevs.splice(+btn.dataset.del, 1); render(); });
+    });
+  }
+  render();
+
+  document.getElementById('gmAddRev').addEventListener('click', () => {
+    localRevs.push({ text: '', author: '', role: '', avatar: '', stars: 5 });
+    render();
+    document.getElementById('gmRevList').lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  document.getElementById('gmSaveRevs').addEventListener('click', () => {
+    pending['__reviews__'] = localRevs;
+    markDirty();
+    _renderReviews(localRevs);
+    _closeModal(modal);
+    _toast('✓ Recensioni aggiornate. Clicca Salva per confermare.');
+  });
+
+  modal.querySelectorAll('.admin-modal__cls, .admin-modal__bd').forEach(el => {
+    el.addEventListener('click', () => _closeModal(modal));
+  });
+}
+
+function _defaultReviews() {
+  return [
+    { text: 'Marco ha sostituito la mia caldaia in meno di un giorno. Puntuale, pulito e con un prezzo onesto. Ora il riscaldamento funziona alla perfezione. Lo consiglio a tutti i miei vicini!', author: 'Luca Mancini', role: 'Cliente – Impianto Termico', avatar: 'LM', stars: 5 },
+    { text: 'Abbiamo installato un impianto di condizionamento multisplit in tutto l\'appartamento. Lavoro eseguito perfettamente, con estrema cura dei dettagli e nessuna traccia di sporco lasciata. Professionali e disponibili.', author: 'Sara Bianchi', role: 'Cliente – Condizionamento', avatar: 'SB', stars: 5 },
+    { text: 'Ci siamo affidati a G.M. Impianti per l\'installazione dell\'impianto antincendio del nostro magazzino. Tutto a norma, documentazione completa e certificata. Sempre reperibili per qualsiasi dubbio.', author: 'Roberto Ferretti', role: 'Imprenditore – Impianto Antincendio', avatar: 'RF', stars: 5 },
+    { text: 'Pannelli solari termici installati in due giorni, impianto idraulico della piscina rifatto completamente. Marco è serio, competente e spiega tutto con chiarezza. Il risparmio in bolletta si è già visto!', author: 'Gianni Conti', role: 'Cliente – Energie Rinnovabili & Piscine', avatar: 'GC', stars: 5 },
+  ];
 }

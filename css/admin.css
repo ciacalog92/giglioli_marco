@@ -449,6 +449,76 @@ body:has(#adminBar) .hero {
 .admin-toast--error { background: #7f1d1d; }
 
 /* ===========================
+   REVIEWS MANAGE
+   =========================== */
+.gm-rev-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 16px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.gm-rev-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gm-rev-stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.gm-star {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #d1d5db;
+  padding: 0;
+  line-height: 1;
+  transition: color .15s, transform .15s;
+}
+.gm-star--on { color: #f59e0b; }
+.gm-star:hover { transform: scale(1.2); color: #fbbf24; }
+.gm-rev-label { font-size: .8rem; color: #9ca3af; margin-left: 4px; }
+.gm-rev-ta {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: .88rem;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color .18s;
+}
+.gm-rev-ta:focus { border-color: #1a3a5c; }
+.gm-rev-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gm-rev-inp {
+  flex: 1;
+  min-width: 120px;
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: .85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .18s;
+}
+.gm-rev-inp:focus { border-color: #1a3a5c; }
+.gm-rev-inp--sm { flex: 0 0 70px; min-width: 70px; text-align: center; }
+
+/* ===========================
    RESPONSIVE
    =========================== */
 @media (max-width: 600px) {

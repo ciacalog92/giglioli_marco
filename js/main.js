@@ -69,34 +69,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Contact form — client-side validation + simulated submit
+// Contact form
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
     let valid = true;
-
     form.querySelectorAll('[required]').forEach(field => {
-      if (!field.value.trim()) {
-        field.classList.add('error');
-        valid = false;
-      } else {
-        field.classList.remove('error');
-      }
+      if (!field.value.trim()) { field.classList.add('error'); valid = false; }
+      else field.classList.remove('error');
     });
-
     if (!valid) return;
-
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = 'Invio in corso…';
-
-    // Simulate async submit (replace with real fetch to backend)
     setTimeout(() => {
       form.innerHTML = `
         <div class="form-success visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
@@ -106,7 +96,6 @@ if (form) {
       `;
     }, 1200);
   });
-
   form.querySelectorAll('[required]').forEach(field => {
     field.addEventListener('input', () => field.classList.remove('error'));
   });
@@ -116,25 +105,21 @@ if (form) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Scroll-to-top button
+// Scroll-to-top
 const scrollTopBtn = document.getElementById('scrollTop');
 if (scrollTopBtn) {
   window.addEventListener('scroll', () => {
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 // Cookie banner
 const cookieBanner  = document.getElementById('cookieBanner');
 const cookieAccept  = document.getElementById('cookieAccept');
 const cookieDecline = document.getElementById('cookieDecline');
-
 if (cookieBanner && !localStorage.getItem('gm_cookie_consent')) {
   setTimeout(() => cookieBanner.classList.add('show'), 800);
-
   const dismissBanner = val => {
     localStorage.setItem('gm_cookie_consent', val);
     cookieBanner.classList.remove('show');
@@ -143,7 +128,7 @@ if (cookieBanner && !localStorage.getItem('gm_cookie_consent')) {
   cookieDecline.addEventListener('click', () => dismissBanner('necessary'));
 }
 
-// Animated counters for stat numbers
+// Animated counters
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -154,7 +139,6 @@ const counterObserver = new IntersectionObserver(entries => {
     const suffix = el.textContent.replace(/[\d]/g, '');
     const dur    = 1200;
     const start  = performance.now();
-
     const tick = now => {
       const progress = Math.min((now - start) / dur, 1);
       const ease     = 1 - Math.pow(1 - progress, 3);

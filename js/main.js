@@ -169,3 +169,88 @@ const counterObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.stat__num, .about__badge-num').forEach(el => {
   counterObserver.observe(el);
 });
+
+// Chatbot assistente
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbot       = document.getElementById('chatbot');
+const chatbotClose  = document.getElementById('chatbotClose');
+const chatbotBody   = document.getElementById('chatbotBody');
+const chatbotForm   = document.getElementById('chatbotForm');
+const chatbotInput  = document.getElementById('chatbotInput');
+const chatbotQuick  = document.getElementById('chatbotQuick');
+
+if (chatbotToggle && chatbot) {
+  const badge = chatbotToggle.querySelector('.chatbot-toggle__badge');
+
+  const openChat = () => {
+    chatbot.classList.add('open');
+    chatbot.setAttribute('aria-hidden', 'false');
+    chatbotToggle.classList.add('hidden');
+    if (badge) badge.style.display = 'none';
+    setTimeout(() => chatbotInput && chatbotInput.focus(), 200);
+  };
+  const closeChat = () => {
+    chatbot.classList.remove('open');
+    chatbot.setAttribute('aria-hidden', 'true');
+    chatbotToggle.classList.remove('hidden');
+  };
+
+  chatbotToggle.addEventListener('click', openChat);
+  chatbotClose.addEventListener('click', closeChat);
+
+  const addMessage = (text, who = 'bot') => {
+    const msg = document.createElement('div');
+    msg.className = `chat-msg chat-msg--${who}`;
+    msg.innerHTML = text;
+    // Insert before quick replies if present, otherwise append
+    if (chatbotQuick && chatbotQuick.parentNode === chatbotBody) {
+      chatbotBody.insertBefore(msg, chatbotQuick);
+    } else {
+      chatbotBody.appendChild(msg);
+    }
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  };
+
+  const respond = (key, raw = '') => {
+    const text = (raw || key).toLowerCase();
+    let reply;
+    if (key === 'preventivo' || /preventiv|prezz|costo|quanto/.test(text)) {
+      reply = 'Perfetto! Puoi richiedere un preventivo gratuito compilando il <a href="#contatti">modulo contatti</a> oppure scrivendoci su WhatsApp. Rispondiamo entro 24 ore.';
+    } else if (key === 'servizi' || /serviz|cosa fate|offrit/.test(text)) {
+      reply = 'Ci occupiamo di impianti termici, idraulici, condizionamento, antincendio, piscine ed energie rinnovabili. <a href="#servizi">Scopri tutti i servizi</a>.';
+    } else if (key === 'emergenza' || /emergen|urgen|pronto|guast|perdit/.test(text)) {
+      reply = 'Per emergenze siamo disponibili 7 giorni su 7. Chiamaci al <a href="tel:+39XXXXXXXXXX">+39 000 000 0000</a> per un pronto intervento.';
+    } else if (key === 'contatti' || /contatt|telefono|email|chiamar|dove/.test(text)) {
+      reply = 'Puoi contattarci al <a href="tel:+39XXXXXXXXXX">+39 000 000 0000</a> o via email a <a href="mailto:info@gmimpianti.it">info@gmimpianti.it</a>. Orari: Lun–Ven 8:00–18:00, Sab 8:00–13:00.';
+    } else if (/ciao|salve|buongiorno|buonasera|hey/.test(text)) {
+      reply = 'Ciao! Come posso aiutarti? Puoi chiedermi di servizi, preventivi o contatti.';
+    } else if (/grazie/.test(text)) {
+      reply = 'Grazie a te! Sono qui se hai altre domande.';
+    } else {
+      reply = 'Per una risposta personalizzata ti consiglio di <a href="#contatti">contattarci direttamente</a>: ti risponderemo nel più breve tempo possibile.';
+    }
+    setTimeout(() => addMessage(reply, 'bot'), 500);
+  };
+
+  if (chatbotQuick) {
+    chatbotQuick.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-q]');
+      if (!btn) return;
+      addMessage(btn.textContent, 'user');
+      chatbotQuick.remove();
+      respond(btn.dataset.q);
+    });
+  }
+
+  if (chatbotForm) {
+    chatbotForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const val = chatbotInput.value.trim();
+      if (!val) return;
+      addMessage(val.replace(/</g, '&lt;'), 'user');
+      chatbotInput.value = '';
+      if (chatbotQuick && chatbotQuick.parentNode) chatbotQuick.remove();
+      respond('', val);
+    });
+  }
+}

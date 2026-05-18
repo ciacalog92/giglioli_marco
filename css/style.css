@@ -2,23 +2,25 @@
    CSS VARIABLES & RESET
    =========================== */
 :root {
-  --primary:       #1a3a5c;
-  --primary-dark:  #122840;
-  --primary-light: #2a5a8c;
-  --accent:        #e05c1a;
-  --accent-dark:   #c04d10;
+  /* Palette derivata dal logo: navy scuro + teal azzurro */
+  --primary:       #1a2855;
+  --primary-dark:  #101830;
+  --primary-light: #243a7a;
+  --accent:        #3ab8cc;
+  --accent-dark:   #2a9eae;
+  --sky:           #80d4ec;
   --green:         #27ae60;
   --cyan:          #0891b2;
   --teal:          #0f766e;
 
-  --bg:            #f8f9fa;
-  --bg-alt:        #eef2f7;
+  --bg:            #f2f9fc;
+  --bg-alt:        #e4f3f9;
   --surface:       #ffffff;
-  --border:        #dde3ea;
+  --border:        #c5e5f0;
 
-  --text:          #1e2d3d;
-  --text-muted:    #5a6a7a;
-  --text-light:    #8a9aaa;
+  --text:          #0f1a30;
+  --text-muted:    #4a607a;
+  --text-light:    #7a95aa;
 
   --radius-sm:     6px;
   --radius:        12px;
@@ -75,11 +77,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .btn--primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(224,92,26,.35);
+  box-shadow: 0 4px 16px rgba(58,184,204,.35);
 }
 .btn--primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 6px 22px rgba(224,92,26,.45);
+  box-shadow: 0 6px 22px rgba(58,184,204,.45);
 }
 .btn--ghost {
   background: rgba(255,255,255,.15);
@@ -131,6 +133,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.logo__img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 .logo__mark {
   display: grid;
@@ -216,8 +226,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 80% 30%, rgba(224,92,26,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(8,145,178,.15) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 60% at 80% 30%, rgba(58,184,204,.22) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(128,212,236,.18) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero__content {
@@ -536,7 +546,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(224,92,26,.2) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(58,184,204,.25) 0%, transparent 70%);
 }
 .cta-banner__inner {
   display: flex;

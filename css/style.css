@@ -781,6 +781,25 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     z-index: 999;
   }
   .nav.open { display: flex; }
+  .nav__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,.12);
+    border: 1.5px solid rgba(255,255,255,.25);
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .nav__close:hover { background: rgba(255,255,255,.22); }
   .nav__list { flex-direction: column; gap: 8px; text-align: center; }
   .nav__link { font-size: 1.2rem; color: rgba(255,255,255,.85); padding: 12px 32px; }
   .nav__link--cta { margin-top: 12px; }

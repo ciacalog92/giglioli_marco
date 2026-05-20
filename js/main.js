@@ -37,6 +37,9 @@ burger.addEventListener('click', () => {
   burger.classList.contains('open') ? closeNav() : openNav();
 });
 
+const navClose = document.getElementById('navClose');
+if (navClose) navClose.addEventListener('click', closeNav);
+
 // Close nav on link click
 nav.querySelectorAll('.nav__link').forEach(link => {
   link.addEventListener('click', closeNav);

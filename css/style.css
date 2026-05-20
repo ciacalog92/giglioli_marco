@@ -82,13 +82,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   box-shadow: 0 6px 22px rgba(224,92,26,.45);
 }
 .btn--ghost {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-  border: 2px solid rgba(255,255,255,.5);
+  background: rgba(26,58,92,.07);
+  color: var(--primary);
+  border: 2px solid rgba(26,58,92,.3);
 }
 .btn--ghost:hover {
-  background: rgba(255,255,255,.25);
-  border-color: #fff;
+  background: rgba(26,58,92,.14);
+  border-color: var(--primary);
+  color: var(--primary-dark);
 }
 .btn--white {
   background: #fff;
@@ -110,12 +111,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   inset-inline: 0;
   z-index: 100;
   padding-block: 14px;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 .header.scrolled {
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow);
   padding-block: 10px;
 }
@@ -138,7 +142,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: contain;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
   transition: transform var(--transition);
 }
 .logo:hover .logo__img { transform: scale(1.08); }
@@ -156,12 +160,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
   transition: background var(--transition);
 }
-.header.scrolled .logo__mark { background: var(--accent); }
 .logo__text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo__text strong { font-size: .95rem; font-weight: 700; color: #fff; }
-.logo__text small { font-size: .72rem; color: rgba(255,255,255,.7); font-weight: 400; }
-.header.scrolled .logo__text strong { color: var(--text); }
-.header.scrolled .logo__text small { color: var(--text-muted); }
+.logo__text strong { font-size: .95rem; font-weight: 700; color: var(--text); }
+.logo__text small { font-size: .72rem; color: var(--text-muted); font-weight: 400; }
 .logo--white .logo__text strong { color: #fff; }
 .logo--white .logo__text small { color: rgba(255,255,255,.7); }
 
@@ -176,12 +177,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: 50px;
   font-size: .9rem;
   font-weight: 500;
-  color: rgba(255,255,255,.85);
+  color: var(--text-muted);
   transition: background var(--transition), color var(--transition);
 }
-.nav__link:hover { background: rgba(255,255,255,.15); color: #fff; }
-.header.scrolled .nav__link { color: var(--text-muted); }
-.header.scrolled .nav__link:hover { background: var(--bg-alt); color: var(--text); }
+.nav__link:hover { background: var(--bg-alt); color: var(--text); }
 .nav__link--cta {
   background: var(--accent);
   color: #fff !important;
@@ -201,11 +200,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .burger span {
   display: block;
   height: 2px;
-  background: #fff;
+  background: var(--text);
   border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
 }
-.header.scrolled .burger span { background: var(--text); }
 .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -219,15 +217,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+  background: linear-gradient(155deg, #dff0fb 0%, #f0f8ff 45%, #e6f4f9 100%);
   padding-top: 90px;
 }
 .hero__bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 80% 30%, rgba(224,92,26,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(8,145,178,.15) 0%, transparent 60%);
+    radial-gradient(ellipse 55% 55% at 85% 25%, rgba(224,92,26,.09) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 5% 85%, rgba(8,145,178,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(74,168,204,.08) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero__content {
@@ -238,9 +237,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .hero__eyebrow {
   display: inline-block;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.9);
+  background: rgba(26,58,92,.07);
+  border: 1px solid rgba(26,58,92,.18);
+  color: var(--primary);
   padding: 6px 16px;
   border-radius: 50px;
   font-size: .82rem;
@@ -253,14 +252,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   font-weight: 800;
   line-height: 1.15;
-  color: #fff;
+  color: var(--primary-dark);
   margin-bottom: 20px;
   letter-spacing: -.02em;
 }
 .hero__title .highlight { color: var(--accent); }
 .hero__subtitle {
   font-size: 1.1rem;
-  color: rgba(255,255,255,.78);
+  color: var(--text-muted);
   max-width: 540px;
   margin-bottom: 36px;
 }
@@ -537,7 +536,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    CTA BANNER
    =========================== */
 .cta-banner {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, #1a4a7c 0%, #1e5f9e 55%, #2272b8 100%);
   padding-block: 70px;
   position: relative;
   overflow: hidden;
@@ -546,7 +545,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(224,92,26,.2) 0%, transparent 70%);
+  background:
+    radial-gradient(ellipse 55% 80% at 90% 50%, rgba(224,92,26,.22) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 5%  50%, rgba(255,255,255,.06) 0%, transparent 60%);
 }
 .cta-banner__inner {
   display: flex;
@@ -908,37 +909,31 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    =========================== */
 .whatsapp-btn {
   position: fixed;
-  bottom: 88px;
-  right: 24px;
+  bottom: 80px;
+  right: 20px;
   z-index: 90;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   background: #25d366;
   color: #fff;
   border-radius: 50px;
-  padding: 12px 20px 12px 14px;
-  box-shadow: 0 4px 20px rgba(37,211,102,.4);
-  font-size: .88rem;
-  font-weight: 600;
-  transition: transform var(--transition), box-shadow var(--transition), padding var(--transition), border-radius var(--transition);
-  overflow: hidden;
-  max-width: 200px;
+  padding: 13px 22px 13px 16px;
+  box-shadow: 0 4px 22px rgba(37,211,102,.45);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
 }
-.whatsapp-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
-.whatsapp-btn span {
-  white-space: nowrap;
-  transition: max-width var(--transition), opacity var(--transition);
-  max-width: 100px;
-  opacity: 1;
-}
+.whatsapp-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+.whatsapp-btn span { white-space: nowrap; }
 .whatsapp-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 26px rgba(37,211,102,.55);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(37,211,102,.6);
 }
 @media (max-width: 480px) {
-  .whatsapp-btn { padding: 12px; border-radius: 50%; bottom: 80px; right: 20px; }
-  .whatsapp-btn span { max-width: 0; opacity: 0; overflow: hidden; }
+  .whatsapp-btn { padding: 13px 18px 13px 14px; bottom: 76px; right: 14px; font-size: .82rem; }
 }
 
 /* ===========================

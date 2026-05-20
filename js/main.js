@@ -11,22 +11,35 @@ onScroll();
 // Mobile burger menu
 const burger = document.getElementById('burger');
 const nav    = document.getElementById('nav');
+let _navScrollY = 0;
+
+function openNav() {
+  _navScrollY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top      = `-${_navScrollY}px`;
+  document.body.style.width    = '100%';
+  burger.classList.add('open');
+  nav.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+}
+
+function closeNav() {
+  document.body.style.position = '';
+  document.body.style.top      = '';
+  document.body.style.width    = '';
+  window.scrollTo(0, _navScrollY);
+  burger.classList.remove('open');
+  nav.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}
 
 burger.addEventListener('click', () => {
-  const open = burger.classList.toggle('open');
-  nav.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+  burger.classList.contains('open') ? closeNav() : openNav();
 });
 
 // Close nav on link click
 nav.querySelectorAll('.nav__link').forEach(link => {
-  link.addEventListener('click', () => {
-    burger.classList.remove('open');
-    nav.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
+  link.addEventListener('click', closeNav);
 });
 
 // Scroll-triggered fade-up animations

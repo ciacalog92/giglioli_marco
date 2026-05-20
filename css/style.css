@@ -109,7 +109,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: fixed;
   inset-block-start: 0;
   inset-inline: 0;
-  z-index: 100;
+  z-index: 1000;
   padding-block: 14px;
   background: rgba(255,255,255,.82);
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
@@ -778,13 +778,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    z-index: 999;
   }
   .nav.open { display: flex; }
   .nav__list { flex-direction: column; gap: 8px; text-align: center; }
   .nav__link { font-size: 1.2rem; color: rgba(255,255,255,.85); padding: 12px 32px; }
   .nav__link--cta { margin-top: 12px; }
-  .burger { display: flex; position: relative; z-index: 501; }
+  .burger { display: flex; }
   .hero__content { padding-block: 60px 100px; }
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }

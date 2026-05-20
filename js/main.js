@@ -20,6 +20,7 @@ function openNav() {
   document.body.style.width    = '100%';
   burger.classList.add('open');
   nav.classList.add('open');
+  header.classList.add('nav-open');
   burger.setAttribute('aria-expanded', 'true');
 }
 
@@ -30,15 +31,13 @@ function closeNav() {
   window.scrollTo(0, _navScrollY);
   burger.classList.remove('open');
   nav.classList.remove('open');
+  header.classList.remove('nav-open');
   burger.setAttribute('aria-expanded', 'false');
 }
 
 burger.addEventListener('click', () => {
   burger.classList.contains('open') ? closeNav() : openNav();
 });
-
-const navClose = document.getElementById('navClose');
-if (navClose) navClose.addEventListener('click', closeNav);
 
 // Close nav on link click
 nav.querySelectorAll('.nav__link').forEach(link => {

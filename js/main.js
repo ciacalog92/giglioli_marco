@@ -87,24 +87,35 @@ if (form) {
 
     if (!valid) return;
 
-    const btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Invio in corso…';
+    const get = name => (form.elements[name]?.value || '').trim();
+    const nome      = get('nome');
+    const telefono  = get('telefono');
+    const email     = get('email');
+    const servizio  = get('servizio');
+    const messaggio = get('messaggio');
 
-    // Simulate async submit (replace with real fetch to backend)
-    setTimeout(() => {
-      form.innerHTML = `
-        <div class="form-success visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-          <h3>Messaggio inviato!</h3>
-          <p>Grazie per averci contattato.<br />Ti risponderemo entro 24 ore lavorative.</p>
-        </div>
-      `;
-    }, 1200);
+    const subject = `Richiesta preventivo dal sito${servizio ? ' – ' + servizio : ''}`;
+    const body =
+      `Nome e Cognome: ${nome}\n` +
+      `Telefono: ${telefono}\n` +
+      `Email: ${email || '—'}\n` +
+      `Servizio di interesse: ${servizio || '—'}\n\n` +
+      `Messaggio:\n${messaggio}\n`;
+
+    const mailto = `mailto:info@gigliolimarco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    form.innerHTML = `
+      <div class="form-success visible">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h3>Quasi fatto!</h3>
+        <p>Si aprirà il tuo programma di posta con il messaggio già pronto.<br />Premi <strong>Invia</strong> per inviarlo a info@gigliolimarco.com.</p>
+      </div>
+    `;
   });
 
   form.querySelectorAll('[required]').forEach(field => {

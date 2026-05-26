@@ -580,7 +580,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
 }
 .contact-item__icon {

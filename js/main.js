@@ -75,12 +75,15 @@ document.querySelectorAll(animTargets.join(',')).forEach((el, i) => {
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', e => {
-    const target = document.querySelector(anchor.getAttribute('href'));
+    const href = anchor.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.getElementById(href.slice(1));
     if (!target) return;
     e.preventDefault();
     const offset = header.offsetHeight + 12;
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
   });
 });
 
@@ -91,16 +94,24 @@ if (form) {
     e.preventDefault();
     let valid = true;
 
+    let firstInvalid = null;
     form.querySelectorAll('[required]').forEach(field => {
-      if (!field.value.trim()) {
+      const empty = field.type === 'checkbox' ? !field.checked : !field.value.trim();
+      if (empty) {
         field.classList.add('error');
+        field.setAttribute('aria-invalid', 'true');
+        if (!firstInvalid) firstInvalid = field;
         valid = false;
       } else {
         field.classList.remove('error');
+        field.removeAttribute('aria-invalid');
       }
     });
 
-    if (!valid) return;
+    if (!valid) {
+      firstInvalid?.focus();
+      return;
+    }
 
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
@@ -109,9 +120,9 @@ if (form) {
     // Simulate async submit (replace with real fetch to backend)
     setTimeout(() => {
       form.innerHTML = `
-        <div class="form-success visible">
+        <div class="form-success visible" role="status" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
@@ -119,11 +130,14 @@ if (form) {
           <p>Grazie per averci contattato.<br />Ti risponderemo entro 24 ore lavorative.</p>
         </div>
       `;
+      form.querySelector('.form-success')?.focus();
     }, 1200);
   });
 
   form.querySelectorAll('[required]').forEach(field => {
-    field.addEventListener('input', () => field.classList.remove('error'));
+    const clear = () => { field.classList.remove('error'); field.removeAttribute('aria-invalid'); };
+    field.addEventListener('input', clear);
+    field.addEventListener('change', clear);
   });
 }
 

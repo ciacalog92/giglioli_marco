@@ -438,9 +438,11 @@ const _starsSVG = n => Array(Math.max(1, Math.min(5, n || 5))).fill(_STAR_SVG).j
 function _renderReviews(reviews) {
   const grid = document.getElementById('reviewsGrid');
   if (!grid || !reviews.length) return;
-  grid.innerHTML = reviews.map(r => `
+  grid.innerHTML = reviews.map(r => {
+    const n = Math.max(1, Math.min(5, r.stars || 5));
+    return `
     <div class="review-card">
-      <div class="review-card__stars">${_starsSVG(r.stars)}</div>
+      <div class="review-card__stars" role="img" aria-label="Valutazione: ${n} stelle su 5">${_starsSVG(n)}</div>
       <blockquote class="review-card__text">${_esc(r.text)}</blockquote>
       <div class="review-card__author">
         <div class="review-card__avatar">${_esc(r.avatar)}</div>
@@ -450,7 +452,8 @@ function _renderReviews(reviews) {
         </div>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 // ─── MODALE RECENSIONI ────────────────────────────────────────────────────────────

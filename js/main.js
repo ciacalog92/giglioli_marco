@@ -69,7 +69,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Contact form — client-side validation + simulated submit
+// Contact form — client-side validation + mailto submit
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', e => {
@@ -103,7 +103,13 @@ if (form) {
       `Messaggio:\n${messaggio}\n`;
 
     const mailto = `mailto:info@gigliolimarco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+
+    const a = document.createElement('a');
+    a.href = mailto;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
 
     form.innerHTML = `
       <div class="form-success visible">
@@ -113,7 +119,8 @@ if (form) {
           <polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
         <h3>Quasi fatto!</h3>
-        <p>Si aprirà il tuo programma di posta con il messaggio già pronto.<br />Premi <strong>Invia</strong> per inviarlo a info@gigliolimarco.com.</p>
+        <p>Si è aperto il tuo programma di posta con il messaggio già pronto.<br />Premi <strong>Invia</strong> per recapitarlo a info@gigliolimarco.com.</p>
+        <p class="form-note">Se non si è aperto nulla, scrivici direttamente a <a href="mailto:info@gigliolimarco.com">info@gigliolimarco.com</a>.</p>
       </div>
     `;
   });

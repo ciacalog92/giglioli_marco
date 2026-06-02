@@ -640,8 +640,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
+}
+.contact-info-card .contact-item {
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
 }
 .contact-item__icon {
   width: 42px;

@@ -571,7 +571,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* Quick action tiles */
 .contact-actions {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 40px;
 }
@@ -614,6 +614,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 28px;
   align-items: start;
 }
+.contact-wrap > * { min-width: 0; }
 
 .contact-info-card {
   background: var(--surface);
@@ -694,6 +695,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-form__header h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
 .contact-form__header p { font-size: .88rem; color: rgba(255,255,255,.85); margin: 0; }
 .contact-form__body { padding: 32px 36px 36px; }
+/* Keep the submit button's visual footprint aligned with the fields above */
+.contact-form__body .btn--full {
+  box-shadow: 0 4px 12px rgba(224,92,26,.22);
+  margin-top: 4px;
+}
+.contact-form__body .btn--full:hover { box-shadow: 0 6px 16px rgba(224,92,26,.3); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .form-group:last-of-type { margin-bottom: 0; }

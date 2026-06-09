@@ -15,13 +15,14 @@
 
   <!-- Waves (behind dolphin) -->
   <g clip-path="url(#circ)">
-    <path d="M 3,128 C 22,118 42,132 62,122 C 82,112 102,126 122,116 C 142,106 158,120 197,112 L 197,145 L 3,145 Z"
+    <path d="M 3,132 C 24,122 44,136 64,126 C 84,116 104,130 124,120 C 144,110 160,124 197,116 L 197,150 L 3,150 Z"
           fill="#1f6f9e" opacity="0.9"/>
-    <path d="M 3,116 C 25,106 45,120 65,110 C 85,100 105,115 125,105 C 145,95 162,110 197,102 L 197,130 L 3,130 Z"
+    <path d="M 3,121 C 26,111 46,125 66,115 C 86,105 106,120 126,110 C 146,100 162,114 197,106 L 197,135 L 3,135 Z"
           fill="#2fc4dd" opacity="0.85"/>
   </g>
 
-  <!-- ── Dolphin body (leaping upper-left, tail lower-right) ── -->
+  <!-- ── Dolphin (mirrored: head to the right, matching brand) ── -->
+  <g transform="translate(200,0) scale(-1,1)">
   <!-- Main body -->
   <path d="
     M 150,82
@@ -60,21 +61,11 @@
   <path d="
     M 78,57 C 83,63 87,74 82,80
     C 77,76 73,65 75,59 Z
-  " fill="#142845"/>
+  " fill="#102a47"/>
 
   <!-- Eye -->
-  <circle cx="59" cy="66" r="3.2" fill="#fff" opacity="0.9"/>
+  <circle cx="59" cy="66" r="3.2" fill="#fff" opacity="0.92"/>
   <circle cx="59" cy="66" r="1.6" fill="#16395f"/>
   <circle cx="58" cy="65" r="0.7" fill="#fff" opacity="0.6"/>
-
-  <!-- Text -->
-  <text x="100" y="156"
-        text-anchor="middle"
-        font-family="Arial, Helvetica, sans-serif"
-        font-weight="bold" font-size="18.5" fill="#0f2236"
-        letter-spacing="0.4">G.M. Impianti</text>
-  <text x="100" y="172"
-        text-anchor="middle"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="11.5" fill="#16395f">di Giglioli Marco</text>
+  </g>
 </svg>

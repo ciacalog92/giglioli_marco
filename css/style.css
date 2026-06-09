@@ -2,19 +2,19 @@
    CSS VARIABLES & RESET
    =========================== */
 :root {
-  --primary:       #1a3a5c;
-  --primary-dark:  #122840;
-  --primary-light: #2a5a8c;
+  --primary:       #1e88c8;
+  --primary-dark:  #1466a0;
+  --primary-light: #4aa8e0;
   --accent:        #e05c1a;
   --accent-dark:   #c04d10;
   --green:         #27ae60;
   --cyan:          #0891b2;
   --teal:          #0f766e;
 
-  --bg:            #f8f9fa;
-  --bg-alt:        #eef2f7;
+  --bg:            #f6fafd;
+  --bg-alt:        #e8f3fb;
   --surface:       #ffffff;
-  --border:        #dde3ea;
+  --border:        #d4e4f0;
 
   --text:          #1e2d3d;
   --text-muted:    #5a6a7a;
@@ -135,8 +135,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 10px;
 }
 .logo__img {
-  width: 42px;
-  height: 42px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: contain;
@@ -159,8 +159,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: background var(--transition);
 }
 .logo__text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo__text strong { font-size: .95rem; font-weight: 700; color: var(--text); }
-.logo__text small { font-size: .72rem; color: var(--text-muted); font-weight: 400; }
+.logo__text strong { font-size: 1.25rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+.logo__text small { font-size: .82rem; color: var(--text-muted); font-weight: 500; }
 .logo--white .logo__text strong { color: #fff; }
 .logo--white .logo__text small { color: rgba(255,255,255,.7); }
 
@@ -377,7 +377,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* Gradient backgrounds per service color */
 .service-card[data-color="red"]    .service-card__media { background: linear-gradient(135deg, #b71c1c, #e53e3e); }
-.service-card[data-color="blue"]   .service-card__media { background: linear-gradient(135deg, #0d2240, #1a4a7a); }
+.service-card[data-color="blue"]   .service-card__media { background: linear-gradient(135deg, #1466a0, #3fa3dd); }
 .service-card[data-color="cyan"]   .service-card__media { background: linear-gradient(135deg, #005662, #0891b2); }
 .service-card[data-color="orange"] .service-card__media { background: linear-gradient(135deg, #bf360c, #e05c1a); }
 .service-card[data-color="teal"]   .service-card__media { background: linear-gradient(135deg, #004d40, #0f766e); }
@@ -534,7 +534,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    CTA BANNER
    =========================== */
 .cta-banner {
-  background: linear-gradient(135deg, #1a4a7c 0%, #1e5f9e 55%, #2272b8 100%);
+  background: linear-gradient(135deg, #1e88c8 0%, #2b9ad6 55%, #4aa8e0 100%);
   padding-block: 70px;
   position: relative;
   overflow: hidden;
@@ -980,6 +980,60 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .scroll-top:hover { background: var(--primary-light); }
 .scroll-top svg { width: 18px; height: 18px; }
+
+/* ===========================
+   INTRO SPLASH (logo centrato all'apertura)
+   =========================== */
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(155deg, #dff0fb 0%, #f0f8ff 45%, #e6f4f9 100%);
+  transition: opacity .6s ease, visibility .6s ease;
+}
+.intro-splash.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-splash__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  animation: introPop .7s ease both;
+}
+.intro-splash__logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(20,102,160,.25);
+}
+.intro-splash__name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -.01em;
+}
+.intro-splash__sub {
+  font-size: .95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: -10px;
+}
+@keyframes introPop {
+  0%   { opacity: 0; transform: scale(.82); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 480px) {
+  .intro-splash__logo { width: 118px; height: 118px; }
+  .intro-splash__name { font-size: 1.5rem; }
+}
 
 /* ===========================
    COOKIE BANNER

@@ -1,5 +1,14 @@
 'use strict';
 
+// Intro splash — mostra il logo centrato all'apertura, poi sfuma via
+const introSplash = document.getElementById('introSplash');
+if (introSplash) {
+  const hideSplash = () => introSplash.classList.add('hidden');
+  window.addEventListener('load', () => setTimeout(hideSplash, 1400));
+  // Fallback: nascondi comunque dopo 3s anche se 'load' non scatta
+  setTimeout(hideSplash, 3000);
+}
+
 // Header scroll effect
 const header = document.getElementById('header');
 const onScroll = () => {
@@ -58,13 +67,11 @@ const observer = new IntersectionObserver(
 const animTargets = [
   '.service-card',
   '.why-card',
-  '.review-card',
   '.about__content',
   '.about__visual',
   '.contact-info',
   '.contact-form',
   '.section__header',
-  '.reviews-summary',
 ];
 document.querySelectorAll(animTargets.join(',')).forEach((el, i) => {
   el.classList.add('fade-up');

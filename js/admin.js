@@ -175,7 +175,6 @@ function _initAdmin() {
       <div class="admin-bar__actions">
         <button id="abEdit"     class="ab-btn">✏️ Modifica</button>
         <button id="abGallery"  class="ab-btn">🖼️ Galleria</button>
-        <button id="abReviews"  class="ab-btn">⭐ Recensioni</button>
         <button id="abSave"     class="ab-btn ab-btn--save" disabled>💾 Salva</button>
         <button id="abReset"    class="ab-btn ab-btn--danger">🗑️ Reset</button>
         <button id="abLogout"   class="ab-btn ab-btn--logout">Esci</button>
@@ -225,11 +224,6 @@ function _initAdmin() {
   // ── Galleria ─────────────────────────────────────────────────────────────────
   document.getElementById('abGallery').addEventListener('click', () => {
     _openGalleryModal(_pending, _markDirty);
-  });
-
-  // ── Recensioni ───────────────────────────────────────────────────────────────
-  document.getElementById('abReviews').addEventListener('click', () => {
-    _openReviewsModal(_pending, _markDirty);
   });
 }
 

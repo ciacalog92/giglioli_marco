@@ -109,11 +109,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: fixed;
   inset-block-start: 0;
   inset-inline: 0;
-  z-index: 100;
+  z-index: 1000;
   padding-block: 14px;
   background: rgba(255,255,255,.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 .header.scrolled {
@@ -874,17 +872,22 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     position: fixed;
     inset: 0;
     background: rgba(18,40,64,.97);
-    backdrop-filter: blur(12px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 999;
   }
   .nav.open { display: flex; }
   .nav__list { flex-direction: column; gap: 8px; text-align: center; }
   .nav__link { font-size: 1.2rem; color: rgba(255,255,255,.85); padding: 12px 32px; }
   .nav__link--cta { margin-top: 12px; }
-  .burger { display: flex; z-index: 100; }
+  .burger { display: flex; }
+  /* When nav is open: transparent header so burger/X blends into the dark overlay */
+  .header.nav-open {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .header.nav-open .burger span { background: #fff; }
   .hero__content { padding-block: 60px 100px; }
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }

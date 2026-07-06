@@ -417,6 +417,55 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ===========================
+   PAYMENT BOX (pagamenti rateali)
+   =========================== */
+.payment-box {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+.payment-box__icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.payment-box__icon svg { width: 28px; height: 28px; }
+.payment-box__text { flex: 1 1 300px; }
+.payment-box__text h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+.payment-box__text p {
+  font-size: .95rem;
+  color: var(--text-muted);
+}
+.payment-box__btn { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .payment-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+  .payment-box__btn { width: 100%; text-align: center; justify-content: center; }
+}
+
+/* ===========================
    ABOUT
    =========================== */
 .about {
